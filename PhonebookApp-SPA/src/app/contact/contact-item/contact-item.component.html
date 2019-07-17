@@ -1,0 +1,20 @@
+<div class="card text-center mb-2">
+  <a [href]="'#phone-contact' + contact.contactId" aria-expanded="false" class="text-decoration-none"
+    data-toggle="collapse" role="button">
+    <div class="card-body" data-toggle="collapse">
+      <i class="fas fa-user-circle fa-3x mb-1"></i>
+      <p>
+        {{ contact.name }}<br />
+        <small class="text-muted">{{ contact.email }}</small>
+      </p>
+    </div>
+  </a>
+  <div class="collapse " [id]="'phone-contact' + contact.contactId">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" *ngFor="let p of contact.phoneNumbers">
+        {{ p.number }}
+      </li>
+    </ul>
+    <button class="btn btn-primary btn-block btn-sm" (click)="onItemClick()" type="button">Edit</button>
+  </div>
+</div>

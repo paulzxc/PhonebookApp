@@ -1,7 +1,10 @@
-<!--The content below is only a placeholder and can be replaced.-->
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" routerLink="/">Phonebook</a>
+</nav>
 <div class="container">
-  <div style="text-align:center">
-    <h1>Welcome to {{ title }}!</h1>
-    <app-value></app-value>
+  <div class="row mt-4">
+    <div class="col-12">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>

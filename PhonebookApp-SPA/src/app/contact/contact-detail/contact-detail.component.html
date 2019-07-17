@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-8 offset-sm-2">
+    <div class="card mb-2">
+      <div class="card-body">
+        <h5 class="card-title">Contact Detail</h5>
+        <form [formGroup]="contactDetailForm" class="mt-4">
+          <div class="form-group row">
+            <label for="name" class="col-sm-3 col-form-label">Name</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="name" formControlName="Name">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="email" class="col-sm-3 col-form-label">Email</label>
+            <div class="col-sm-9">
+              <input type="email" class="form-control" id="email" formControlName="Email">
+            </div>
+          </div>
+          <div formArrayName="PhoneNumbers">
+            <div class="form-group row" *ngFor="let phoneNumber of PhoneNumbers.controls; let i = index">
+              <label *ngIf="i === 0" for="phone-number" class="col-sm-3 col-form-label">Phone Number/s</label>
+              <div [ngClass]="i !== 0 ? 'col-sm-9 offset-sm-3': 'col-sm-9'">
+                <div class="row">
+                  <div class="col-6">
+                    <input appNumberOnly type="text" class="form-control" [formControlName]="i">
+                  </div>
+                  <div class="col-6">
+                    <button type="button" class="btn btn-sm btn-danger" (click)="deleteNumber(i)"
+                      *ngIf="PhoneNumbers.controls.length !== 1">Remove</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-9 offset-sm-3">
+                <button type="button" class="btn btn-primary btn-sm" (click)="addNumber()">Add</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 text-right">
+        <button type="button" class="btn btn-success mr-2" (click)="onEditContact()" *ngIf="editMode"
+          [disabled]="contactDetailForm.pristine">Save</button>
+        <button type="button" class="btn btn-success mr-2" (click)="onSaveContact()" *ngIf="!editMode"
+          [disabled]="contactDetailForm.pristine">Save</button>
+        <button type="button" class="btn btn-danger mr-2" (click)="onDelete()" *ngIf="editMode">Delete</button>
+        <button type="button" class="btn btn-primary" (click)="onCancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
